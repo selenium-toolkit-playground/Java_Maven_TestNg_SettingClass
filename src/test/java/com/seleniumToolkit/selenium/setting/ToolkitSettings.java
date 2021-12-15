@@ -1,6 +1,7 @@
 package com.seleniumToolkit.selenium.setting;
 
 import com.seleniumToolkit.selenium.framework.dataLoader.settings.*;
+import com.seleniumToolkit.selenium.framework.grid.SauceLabsGrid;
 import com.seleniumToolkit.selenium.framework.grid.Vendor;
 import com.seleniumToolkit.selenium.framework.grid.vendorOption.sauceLabs.SauceLabsOptions;
 import com.seleniumToolkit.selenium.framework.listeners.webdriver.SpeedMode;
@@ -36,6 +37,19 @@ public class ToolkitSettings implements ToolkitSettingInterface {
     @Override
     public String getRemoteGridUrl() {
         return "";
+    }
+
+    /**
+     * Description: {@link SauceLabsGrid} of the right SauceLabs-Grid location.
+     * Since Version: 1.3.26
+     * Expired Version: -
+     */
+    public SauceLabsGrid getRemoteGridSaucelabs() {
+        return null;
+        //return SauceLabsGrid.SAUCELABS_EU_CENTRAL_DATACENTER;
+        //return SauceLabsGrid.SAUCELABS_APAC_SOUTHEAST_DATACENTER;
+        //return SauceLabsGrid.SAUCELABS_HEADLESS_US_EAST_DATACENTER;
+        //return SauceLabsGrid.SAUCELABS_US_WEST_DATACENTER;
     }
 
     /**
@@ -121,7 +135,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public String getWebDriverChromeDriverLocation() {
-        return "";
+        return "src\\test\\resources\\seleniumDriverExe\\chromedriver.exe";
     }
 
     /**
@@ -198,7 +212,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public String getLicense(){
-        return "";
+        return "16614e897c60460e0a090a085a5088a499df6458d276;012!2MOBILE&Wnko;COMPANY&0oathn:NUWc:3B;NEOLOAD_DRIVER&RJoy;CHROME_EXTENSION_FIELD_COUNT&GWWW;SCREENSHOT_ADVANCED&XZaF;MULTIPLE_BROWSER&CFmW;PARALLELIZATION&ZSS;REPORTING_ADVANCED&YVtU!V2";
     }
 
     /**
@@ -316,7 +330,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public boolean getNetworkTrafficCapturing(){
-        return false;
+        return true;
     }
 
     /**
