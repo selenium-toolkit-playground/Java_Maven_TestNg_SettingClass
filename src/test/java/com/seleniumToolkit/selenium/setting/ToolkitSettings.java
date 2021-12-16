@@ -5,10 +5,12 @@ import com.seleniumToolkit.selenium.framework.grid.SauceLabsGrid;
 import com.seleniumToolkit.selenium.framework.grid.Vendor;
 import com.seleniumToolkit.selenium.framework.grid.vendorOption.sauceLabs.SauceLabsOptions;
 import com.seleniumToolkit.selenium.framework.listeners.webdriver.SpeedMode;
+import com.seleniumToolkit.selenium.framework.modul.networkProxy.gatling.GatlingNetworkProxyConfig;
 import com.seleniumToolkit.selenium.framework.modul.reporting.jiraXrayReporter.JiraReporterConfig;
 import com.seleniumToolkit.selenium.framework.modul.reporting.slack.SlackReporterConfig;
 import org.apache.logging.log4j.Level;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.ArrayList;
@@ -16,6 +18,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ToolkitSettings implements ToolkitSettingInterface {
+
+    public static String SLACK_BOT_TOKEN = "";
+    public static String LICENSE = "";
+    public static String NAME = "";
+
 
     /**
      * Description: If the switch is on grid, the tests will run on the defined grid.
@@ -45,11 +52,11 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      * Expired Version: -
      */
     public SauceLabsGrid getRemoteGridSaucelabs() {
-        return null;
+        //return null;
         //return SauceLabsGrid.SAUCELABS_EU_CENTRAL_DATACENTER;
         //return SauceLabsGrid.SAUCELABS_APAC_SOUTHEAST_DATACENTER;
         //return SauceLabsGrid.SAUCELABS_HEADLESS_US_EAST_DATACENTER;
-        //return SauceLabsGrid.SAUCELABS_US_WEST_DATACENTER;
+        return SauceLabsGrid.SAUCELABS_US_WEST_DATACENTER;
     }
 
     /**
@@ -60,9 +67,9 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public Vendor getGridVendor() {
-        return Vendor.DUMMY_VENDOR;
+        //return Vendor.DUMMY_VENDOR;
         //return Vendor.SBOX_ELEMENT34;
-        //return Vendor.SAUCELABS;
+        return Vendor.SAUCELABS;
     }
 
     /**
@@ -95,7 +102,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public boolean getWebdriverAutoDownloadDriverExeEnabled() {
-        return false;
+        return true;
     }
 
     /**
@@ -135,7 +142,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public String getWebDriverChromeDriverLocation() {
-        return "src\\test\\resources\\seleniumDriverExe\\chromedriver.exe";
+        return "";
     }
 
     /**
@@ -212,7 +219,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public String getLicense(){
-        return "16614e897c60460e0a090a085a5088a499df6458d276;012!2MOBILE&Wnko;COMPANY&0oathn:NUWc:3B;NEOLOAD_DRIVER&RJoy;CHROME_EXTENSION_FIELD_COUNT&GWWW;SCREENSHOT_ADVANCED&XZaF;MULTIPLE_BROWSER&CFmW;PARALLELIZATION&ZSS;REPORTING_ADVANCED&YVtU!V2";
+        return LICENSE;
     }
 
     /**
@@ -232,7 +239,10 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public Capabilities getGenerallCapabilities(){
-        return new DesiredCapabilities();
+        MutableCapabilities mutableCapabilities = new MutableCapabilities();
+        mutableCapabilities.setCapability("username","maiborndemo");
+        mutableCapabilities.setCapability("accessKey","2d96efae-282f-4d86-842f-2b4ed48aa02f");
+        return mutableCapabilities;
     }
 
     /**
@@ -330,7 +340,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public boolean getNetworkTrafficCapturing(){
-        return true;
+        return false;
     }
 
     /**
@@ -340,7 +350,7 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public String getTestProjectName(){
-        return "Demo Project";
+        return "MaibornWolff Workshop Project - "+NAME;
     }
 
     /**
@@ -381,13 +391,20 @@ public class ToolkitSettings implements ToolkitSettingInterface {
      */
     @Override
     public SlackReporterConfig getSlackReporterConfig(){
-        return null;
-        /*
+        //return null;
+
         SlackReporterConfig slackReporterConfig = new SlackReporterConfig();
-        slackReporterConfig.setEnabled(true);
-        slackReporterConfig.setChannelName("");
-        slackReporterConfig.setBotUserToken("");
+        slackReporterConfig.setEnabled(false);
+        slackReporterConfig.setBotUserToken(SLACK_BOT_TOKEN);
+        slackReporterConfig.setChannelName("maibornwolff-workshop");
         return slackReporterConfig;
-        */
+
+    }
+
+    @Override
+    public GatlingNetworkProxyConfig getGatlingNetworkProxyConfig() {
+        GatlingNetworkProxyConfig gatlingNetworkProxyConfig = new GatlingNetworkProxyConfig();
+        gatlingNetworkProxyConfig.setEnabled(false);
+        return gatlingNetworkProxyConfig;
     }
 }
